@@ -320,6 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d429afa28b724d23a2b563ecae4f865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootPoint: {fileID: 3743556065035714937}
+  chewingGum: {fileID: 919132149155446097, guid: b1ec36d907107324b9fdaea4fae5dc04, type: 3}
 --- !u!33 &3448480733671503406
 MeshFilter:
   m_ObjectHideFlags: 0
