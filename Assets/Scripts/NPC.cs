@@ -2,15 +2,39 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    private Collider[] colliders;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        colliders = GetComponents<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Projectile"))
+        {
+            return;
+        }
+
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            ContactPoint contactPoint = collision.GetContact(i);
+            Collider collider = contactPoint.thisCollider;
+            if (collider = colliders[0])
+            {
+                print("collider 0");
+            }
+            else if (collider = colliders[1])
+            {
+                print("collider 1");
+            }
+
+        }
     }
 }
