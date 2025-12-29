@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    private Collider[] colliders;
+    [SerializeField] private Collider[] colliders;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        colliders = GetComponents<Collider>();
+        //colliders = GetComponents<Collider>();
+        //colliders[0].
     }
 
     // Update is called once per frame
@@ -15,7 +16,13 @@ public class NPC : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
+
+    public void ReceiveCollision(string tag)
+    {
+        print(tag);
+    }
+
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Projectile"))
         {
@@ -36,5 +43,5 @@ public class NPC : MonoBehaviour
             }
 
         }
-    }
+    }*/
 }
