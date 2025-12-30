@@ -19,7 +19,14 @@ public class NPC : MonoBehaviour
 
     public void ReceiveCollision(string tag)
     {
-        print(tag);
+        if (tag == "Head")
+        {
+
+        }
+        else if(tag == "Body")
+        {
+
+        }
     }
 
     /*private void OnCollisionEnter(Collision collision)
