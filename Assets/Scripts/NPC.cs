@@ -1,8 +1,11 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
     [SerializeField] private Collider[] colliders;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Transform bubble;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,11 +24,11 @@ public class NPC : MonoBehaviour
     {
         if (tag == "Head")
         {
-
+            bubble.transform.DOScale(Vector3.one * Random.Range(0.5f, 5.0f), 2.5f);
         }
         else if(tag == "Body")
         {
-
+            animator.SetBool("Die", true);
         }
     }
 
