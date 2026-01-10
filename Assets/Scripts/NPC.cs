@@ -1,5 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class NPC : MonoBehaviour
 {
@@ -7,17 +9,47 @@ public class NPC : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bubble;
 
+    private NavMeshAgent agent;
+    private bool isWalking;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //colliders = GetComponents<Collider>();
-        //colliders[0].
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private Vector3 RandomPointOnNavMesh()
+    {
+        bool searchPoint = true;
+        Vector3 result = Vector3.zero;
+
+        while (searchPoint)
+        {
+            Vector3 randomPoint = transform.position + Random.insideUnitSphere * 10.0f;
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                searchPoint = false;
+            }
+
+        }
+
+        return result;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(agent.velocity.magnitude <= 0.0f)
+        {
+            isWalking = false;
+        }
+        if(!isWalking)
+        {
+            agent.SetDestination(RandomPointOnNavMesh());
+            isWalking = true;
+        }
     }
 
     public void ReceiveCollision(string tag)
@@ -31,27 +63,4 @@ public class NPC : MonoBehaviour
             animator.SetBool("Die", true);
         }
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (!collision.gameObject.CompareTag("Projectile"))
-        {
-            return;
-        }
-
-        for (int i = 0; i < collision.contactCount; i++)
-        {
-            ContactPoint contactPoint = collision.GetContact(i);
-            Collider collider = contactPoint.thisCollider;
-            if (collider = colliders[0])
-            {
-                print("collider 0");
-            }
-            else if (collider = colliders[1])
-            {
-                print("collider 1");
-            }
-
-        }
-    }*/
 }

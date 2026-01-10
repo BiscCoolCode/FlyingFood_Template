@@ -478,6 +478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1001516629}
   - component: {fileID: 1001516630}
+  - component: {fileID: 1001516631}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -494,7 +495,7 @@ Transform:
   m_GameObject: {fileID: 1001516626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10.428, y: 0, z: 5.883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -518,6 +519,28 @@ MonoBehaviour:
   - {fileID: 212287595}
   animator: {fileID: 1661935195}
   bubble: {fileID: 442444748}
+--- !u!195 &1001516631
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001516626}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &1201496018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 445712794880070669, guid: 3084431740648f04bbfe3997151daac9, type: 3}
