@@ -519,6 +519,7 @@ MonoBehaviour:
   - {fileID: 212287595}
   animator: {fileID: 1661935195}
   bubble: {fileID: 442444748}
+  maxIdleTime: 6
 --- !u!195 &1001516631
 NavMeshAgent:
   m_ObjectHideFlags: 0

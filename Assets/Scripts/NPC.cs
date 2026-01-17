@@ -8,15 +8,43 @@ public class NPC : MonoBehaviour
     [SerializeField] private Collider[] colliders;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform bubble;
+    [SerializeField] private float maxIdleTime;
 
     private NavMeshAgent agent;
-    private bool isWalking;
+    private NpcState npcState;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(npcState == NpcState.Dead)
+        {
+            return;
+        }
+
+        if(agent.velocity.magnitude <= 0.0f)
+        {
+            npcState = NpcState.Idle;
+            Invoke(nameof(SetDestination), Random.Range(2, maxIdleTime));
+        }
+        else
+        {
+
+            npcState = NpcState.Walking;
+        }
+
+        animator.SetFloat("NormalizedWalkSpeed", agent.velocity.magnitude.Remap(0, agent.speed, 0, 1));
+    }
+
+    private void SetDestination()
+    {
+        agent.SetDestination(RandomPointOnNavMesh());
     }
 
     private Vector3 RandomPointOnNavMesh()
@@ -38,20 +66,6 @@ public class NPC : MonoBehaviour
         return result;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(agent.velocity.magnitude <= 0.0f)
-        {
-            isWalking = false;
-        }
-        if(!isWalking)
-        {
-            agent.SetDestination(RandomPointOnNavMesh());
-            isWalking = true;
-        }
-    }
-
     public void ReceiveCollision(string tag)
     {
         if (tag == "Head")
@@ -61,6 +75,7 @@ public class NPC : MonoBehaviour
         else if(tag == "Body")
         {
             animator.SetBool("Die", true);
+            npcState = NpcState.Dead;
         }
     }
 }
