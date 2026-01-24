@@ -12,6 +12,8 @@ public class NPC : MonoBehaviour
 
     private NavMeshAgent agent;
     private NpcState npcState;
+    private float timer;
+    private float cooldown;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,7 +33,11 @@ public class NPC : MonoBehaviour
         if(agent.velocity.magnitude <= 0.0f)
         {
             npcState = NpcState.Idle;
-            Invoke(nameof(SetDestination), Random.Range(2, maxIdleTime));
+            timer -= Time.deltaTime;
+            if (timer <= 0.0f)
+            {
+                SetDestination();
+            }
         }
         else
         {
@@ -40,6 +46,12 @@ public class NPC : MonoBehaviour
         }
 
         animator.SetFloat("NormalizedWalkSpeed", agent.velocity.magnitude.Remap(0, agent.speed, 0, 1));
+    }
+
+    private void StartTimer()
+    {
+        cooldown = Random.Range(2, maxIdleTime);
+        timer = cooldown;
     }
 
     private void SetDestination()
@@ -68,7 +80,7 @@ public class NPC : MonoBehaviour
 
     public void ReceiveCollision(string tag)
     {
-        if (tag == "Head")
+        if (tag == "Head" && npcState != NpcState.Dead)
         {
             bubble.transform.DOScale(Vector3.one * Random.Range(0.5f, 5.0f), 2.5f);
         }
@@ -76,6 +88,9 @@ public class NPC : MonoBehaviour
         {
             animator.SetBool("Die", true);
             npcState = NpcState.Dead;
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            agent.ResetPath();
         }
     }
 }
