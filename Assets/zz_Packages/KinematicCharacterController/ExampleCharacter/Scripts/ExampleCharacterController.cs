@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace KinematicCharacterController.Examples
 {
@@ -97,6 +98,7 @@ namespace KinematicCharacterController.Examples
             // Assign the characterController to the motor
             Motor.CharacterController = this;
         }
+
 
         /// <summary>
         /// Handles movement state transitions and enter/exit callbacks
@@ -209,6 +211,8 @@ namespace KinematicCharacterController.Examples
         }
 
         private Quaternion _tmpTransientRot;
+        private float posX;
+        private float posZ;
 
         /// <summary>
         /// (Called by KinematicCharacterMotor during its update cycle)

@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class NPC : MonoBehaviour
 {
     [SerializeField] private Collider[] colliders;
-    [SerializeField] private Animator animator;
     [SerializeField] private Transform bubble;
     [SerializeField] private float maxIdleTime;
 
@@ -14,12 +13,14 @@ public class NPC : MonoBehaviour
     private NpcState npcState;
     private float timer;
     private float cooldown;
+    private Animator animator;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
