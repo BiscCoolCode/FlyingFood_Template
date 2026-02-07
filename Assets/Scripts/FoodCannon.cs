@@ -5,6 +5,7 @@ public class FoodCannon : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject chewingGum;
     [SerializeField] private float projectileSpeed = 30.0f;
+    [SerializeField] private Camera camera;
 
     private void Update()
     {
@@ -12,6 +13,13 @@ public class FoodCannon : MonoBehaviour
         {
             Shoot();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+        Physics.Raycast(camera.transform.position, camera.transform.forward, out hit);
+        shootPoint.LookAt(hit.point);
     }
 
     private void Shoot()
