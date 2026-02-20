@@ -268,11 +268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2817985107803855749, guid: 4b5ed568c80c7ab4aa76ecf6dc7e8c70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0675
+      value: 0.067499995
       objectReference: {fileID: 0}
     - target: {fileID: 2817985107803855749, guid: 4b5ed568c80c7ab4aa76ecf6dc7e8c70, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1825
+      value: 0.18249981
       objectReference: {fileID: 0}
     - target: {fileID: 2817985107803855749, guid: 4b5ed568c80c7ab4aa76ecf6dc7e8c70, type: 3}
       propertyPath: m_LocalRotation.w
@@ -395,15 +395,15 @@ PrefabInstance:
     - target: {fileID: 9218731065153309679, guid: 0db95916c4513ac449c0e06cb4b4eb17, type: 3}
       propertyPath: bubble
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8019273803096042437}
     - target: {fileID: 9218731065153309679, guid: 0db95916c4513ac449c0e06cb4b4eb17, type: 3}
       propertyPath: 'colliders.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3039942349895018638}
     - target: {fileID: 9218731065153309679, guid: 0db95916c4513ac449c0e06cb4b4eb17, type: 3}
       propertyPath: 'colliders.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8463017245277547698}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7709826655165329369, guid: 0db95916c4513ac449c0e06cb4b4eb17, type: 3}

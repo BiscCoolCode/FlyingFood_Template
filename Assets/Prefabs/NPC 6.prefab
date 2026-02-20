@@ -807,9 +807,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  bubble: {fileID: 0}
+  - {fileID: 3393149646518436663}
+  - {fileID: 4405686660940990585}
+  bubble: {fileID: 6674084290758425971}
   maxIdleTime: 6
 --- !u!195 &8789860640078922829
 NavMeshAgent:

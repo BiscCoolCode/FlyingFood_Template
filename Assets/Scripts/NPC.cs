@@ -84,6 +84,7 @@ public class NPC : MonoBehaviour
         if (tag == "Head" && npcState != NpcState.Dead)
         {
             bubble.transform.DOScale(Vector3.one * Random.Range(0.5f, 5.0f), 2.5f);
+            ScoreManager.Instance.IncreaseScore();
         }
         else if(tag == "Body")
         {
