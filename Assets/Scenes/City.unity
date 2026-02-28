@@ -381,7 +381,14 @@ MonoBehaviour:
   - 'Welcome to Chewinggum-Delivery! I''ve heard that you signed up for this dangerous
     job. My name is Gumer Gumering Gumerton but you can call me Gum. I''ve quit this
     job because it''s too hard - now you need to replace me. So let''s get starting! '
-  - 
+  - 'You already have the equipment: A box of never ending chewinggums! If you somehow
+    do run out of chewinggums, then come to me.
+
+    Your goal is to feed all pedestrians
+    with chewinggums. You have to throw chewinggums with left-click at their heads.
+    If you miss, they''ll fall to the ground unconscious...  Watch out, it''s harder
+    than you think!'
+  _OkButton: {fileID: 2023952756}
 --- !u!1 &287504215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4192519122356648612, guid: 24c53b30337bc1a4d883f08dabdb4f33, type: 3}
@@ -417,7 +424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 256611584561173802, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.44
+      value: -4.39
       objectReference: {fileID: 0}
     - target: {fileID: 256611584561173802, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
       propertyPath: m_LocalPosition.y
@@ -425,7 +432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 256611584561173802, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.75
+      value: -9.94
       objectReference: {fileID: 0}
     - target: {fileID: 256611584561173802, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -475,6 +482,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 962975475}
+    - target: {fileID: 4363216397013103762, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7431302634984379431, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
       propertyPath: chewingGum
       value: 
@@ -1580,6 +1591,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 505657717}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &1678383061
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1270297704500353507, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_Name
+      value: character-male-e
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.993546
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.113429666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -13.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176944349058301381, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
 --- !u!4 &1760313776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2891815934333475227, guid: 8ecda880ea4fc6d479364e5b72174f2a, type: 3}
@@ -2907,6 +2995,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4192519122356648612, guid: 24c53b30337bc1a4d883f08dabdb4f33, type: 3}
       insertIndex: -1
       addedObject: {fileID: 287504217}
+    - targetCorrespondingSourceObject: {fileID: 45649750311969499, guid: 24c53b30337bc1a4d883f08dabdb4f33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 24c53b30337bc1a4d883f08dabdb4f33, type: 3}
 --- !u!1001 &4497487370396159387
 PrefabInstance:
@@ -3150,3 +3241,4 @@ SceneRoots:
   - {fileID: 953887830}
   - {fileID: 38344851}
   - {fileID: 1670418707}
+  - {fileID: 1678383061}
