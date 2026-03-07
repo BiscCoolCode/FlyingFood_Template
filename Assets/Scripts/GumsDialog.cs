@@ -40,6 +40,13 @@ public class GumsDialog : MonoBehaviour
 
     private void ChangeText()
     {
+        print(_dialogNumber);
+        if(_dialogNumber == _Dialog.Length)
+        {
+            GameManager.Instance.ChangeState(GameState.Play);
+            return;
+        }
+
         _textbox.text = _Dialog[_dialogNumber];
         _OkButton.gameObject.SetActive(false);
         _textbox.maxVisibleCharacters = 0;
