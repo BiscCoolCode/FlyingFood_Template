@@ -389,6 +389,7 @@ MonoBehaviour:
     If you miss, they''ll fall to the ground unconscious...  Watch out, it''s harder
     than you think!'
   _OkButton: {fileID: 2023952756}
+  _Gum: {fileID: 350883392}
 --- !u!1 &287504215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4192519122356648612, guid: 24c53b30337bc1a4d883f08dabdb4f33, type: 3}
@@ -414,6 +415,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &350883392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1270297704500353507, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
+  m_PrefabInstance: {fileID: 1678383061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &466648205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,11 +653,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5405504408730148219, guid: 0db95916c4513ac449c0e06cb4b4eb17, type: 3}
   m_PrefabInstance: {fileID: 8795029066056477385}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &743376728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2729112869168318159, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
+--- !u!114 &743376730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4363216397013103762, guid: 4d0492856e4115445b5cf00798bd69be, type: 3}
   m_PrefabInstance: {fileID: 466648205}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461cd396e3fc7cc4eb9c92bde05c1b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &953887826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b99fa9ed606d344beba6f9e2074f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Player: {fileID: 743376728}
+  _Player: {fileID: 743376730}
   _Foodcanon: {fileID: 1258894653}
 --- !u!4 &1417956899
 Transform:
@@ -1657,7 +1669,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1270297704500353507, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
       propertyPath: m_Name
-      value: character-male-e
+      value: Gum
       objectReference: {fileID: 0}
     - target: {fileID: 1939593094811648857, guid: 49a50d89aa4d3ae48b05cbf8b4c9599d, type: 3}
       propertyPath: m_LocalScale.x

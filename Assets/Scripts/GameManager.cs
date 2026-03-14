@@ -4,7 +4,7 @@ using UnityEngine.SocialPlatforms;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _Player;
+    [SerializeField] private ExamplePlayer _Player;
     [SerializeField] private GameObject _Foodcanon;
 
     public static GameManager Instance { get; private set; }
@@ -41,15 +41,19 @@ public class GameManager : MonoBehaviour
             case GameState.Intro:
                 CurrentState = GameState.Intro;
                 Time.timeScale = 0;
-                _Player.GetComponent<ExamplePlayer>().enabled = false;
+                _Player.enabled = false;
+                _Player.CharacterCamera.enabled = false;
                 _Foodcanon.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
                 break;
 
             case GameState.Play:
                 CurrentState = GameState.Play;
                 Time.timeScale = 1;
-                _Player.GetComponent<ExamplePlayer>().enabled = true;
+                _Player.enabled = true;
+                _Player.CharacterCamera.enabled = true;
                 _Foodcanon.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
         }
     }
