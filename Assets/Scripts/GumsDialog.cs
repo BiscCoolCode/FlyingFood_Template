@@ -38,6 +38,7 @@ public class GumsDialog : MonoBehaviour
     {
         while (_textbox.maxVisibleCharacters < _textbox.text.Length)
         {
+            _targetScaleGum = Random.Range(2.9f, 3.1f);
             _textbox.maxVisibleCharacters++;
             await Task.Delay(50);
         }

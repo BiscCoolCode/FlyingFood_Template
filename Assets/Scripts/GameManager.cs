@@ -28,11 +28,6 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.Intro);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeState(GameState gameState)
     {
