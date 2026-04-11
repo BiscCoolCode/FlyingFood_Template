@@ -1930,6 +1930,7 @@ MonoBehaviour:
   _MenuUI: {fileID: 473139462}
   _GameUI: {fileID: 170364667}
   _Crosshair: {fileID: 2133735493}
+  _TransitionDurarion: 5
 --- !u!4 &1417956899
 Transform:
   m_ObjectHideFlags: 0
