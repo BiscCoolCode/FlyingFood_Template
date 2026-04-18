@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _GameUI;
     [SerializeField] private GameObject _Crosshair;
     [SerializeField] private float _TransitionDurarion = 5f;
+    [SerializeField] private GumsDialog _GumsDialog;
 
     public static GameManager Instance { get; private set; }
     public GameState CurrentState {  get; private set; }
@@ -50,21 +51,16 @@ public class GameManager : MonoBehaviour
 
             case GameState.Intro:
                 CurrentState = GameState.Intro;
-                //Time.timeScale = 0;
-                //_Player.enabled = false;
-                //_Player.CharacterCamera.enabled = false;
-                //_Foodcanon.SetActive(false);
+                Time.timeScale = 0;
                 _Player.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
-                
+                _GumsDialog.ChangeText();
+                _GameUI.SetActive(true);
                 break;
 
             case GameState.Play:
                 CurrentState = GameState.Play;
                 Time.timeScale = 1;
-                //_Player.enabled = true;
-                //_Player.CharacterCamera.enabled = true;
-                //_Foodcanon.SetActive(true);
                 _Player.gameObject.SetActive(true);
                 _MenuCamera.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
@@ -76,28 +72,26 @@ public class GameManager : MonoBehaviour
     private void EnableMenu(bool enabled)
     {
         if (enabled)
-        { 
-            //_Player.enabled = false;
+        {
             _GameUI.SetActive(false);
-            //_MenuCamera.enabled = true;
             _MenuUI.SetActive(true);
-            //_Crosshair.SetActive(false);
         }
         else
         {
-            //_Player.enabled = true;
             _GameUI.SetActive(true);
-            //_MenuCamera.enabled = false;
             _MenuUI.SetActive(false);
-            //_Crosshair.SetActive(true);
         }
     }
 
     public async void StartGame()
     {
-        EnableMenu(false);
+        _MenuUI.SetActive(false);
         _MenuCamera.gameObject.transform.DOMove(_Player.CharacterCamera.transform.position, _TransitionDurarion);
         await Task.Delay(1250);
-        _MenuCamera.gameObject.transform.DORotate(_Player.CharacterCamera.transform.rotation.eulerAngles, _TransitionDurarion).OnComplete(() => ChangeState(GameState.Intro));
+        _MenuCamera.gameObject.transform.DORotate(_Player.CharacterCamera.transform.rotation.eulerAngles, _TransitionDurarion).OnComplete(() => 
+        {
+            print("OnComplete");
+            ChangeState(GameState.Intro);
+        });
     }
 }

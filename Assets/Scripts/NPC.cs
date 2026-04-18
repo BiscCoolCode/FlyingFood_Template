@@ -14,6 +14,7 @@ public class NPC : MonoBehaviour
     private float timer;
     private float cooldown;
     private Animator animator;
+    private AudioSource _audioSource;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +22,7 @@ public class NPC : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,6 +86,7 @@ public class NPC : MonoBehaviour
         if (tag == "Head" && npcState != NpcState.Dead)
         {
             bubble.transform.DOScale(Vector3.one * Random.Range(0.5f, 5.0f), 2.5f);
+            _audioSource.Play();
             ScoreManager.Instance.IncreaseScore();
         }
         else if(tag == "Body")

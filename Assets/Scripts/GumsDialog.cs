@@ -19,13 +19,18 @@ public class GumsDialog : MonoBehaviour
     void Start()
     {
         _textbox = GetComponent<TMP_Text>();
-        ChangeText();
+        //ChangeText();
         _OkButton.onClick.AddListener(ChangeText);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.CurrentState != GameState.Intro)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0)) // 0 = Left Click
         {
             SkipText();
@@ -52,7 +57,7 @@ public class GumsDialog : MonoBehaviour
         _textbox.maxVisibleCharacters = _textbox.text.Length;
     }
 
-    private void ChangeText()
+    public void ChangeText()
     {
         print(_dialogNumber);
         if(_dialogNumber == _Dialog.Length)

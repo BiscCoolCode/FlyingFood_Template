@@ -380,7 +380,7 @@ MonoBehaviour:
   _Dialog:
   - 'Welcome to Chewinggum-Delivery! I''ve heard that you signed up for this dangerous
     job. My name is Gumer Gumering Gumerton but you can call me Gum. I''ve quit this
-    job because it''s too hard - now you need to replace me. So let''s get starting! '
+    job because it''s too hard - now you need to replace me. So let''s get started! '
   - 'You already have the equipment: A box of never ending chewinggums! If you somehow
     do run out of chewinggums, then come to me.
 
@@ -1931,6 +1931,7 @@ MonoBehaviour:
   _GameUI: {fileID: 170364667}
   _Crosshair: {fileID: 2133735493}
   _TransitionDurarion: 5
+  _GumsDialog: {fileID: 147364074}
 --- !u!4 &1417956899
 Transform:
   m_ObjectHideFlags: 0
