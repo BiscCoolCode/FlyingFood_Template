@@ -14,11 +14,13 @@ public class GumsDialog : MonoBehaviour
     private TMP_Text _textbox;
     private int _dialogNumber;
     private float _targetScaleGum;
+    private AudioSource _talkAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _textbox = GetComponent<TMP_Text>();
+        _talkAudio = _Gum.GetComponent<AudioSource>();
         //ChangeText();
         _OkButton.onClick.AddListener(ChangeText);
     }
@@ -41,13 +43,14 @@ public class GumsDialog : MonoBehaviour
 
     private async void PrintText()
     {
+        _talkAudio.Play();
         while (_textbox.maxVisibleCharacters < _textbox.text.Length)
         {
             _targetScaleGum = Random.Range(2.9f, 3.1f);
             _textbox.maxVisibleCharacters++;
-            await Task.Delay(50);
+            await Task.Delay(25);
         }
-
+        _talkAudio.Stop();
         _OkButton.gameObject.SetActive(true);
         
     }
