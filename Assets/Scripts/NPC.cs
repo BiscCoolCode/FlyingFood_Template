@@ -8,13 +8,14 @@ public class NPC : MonoBehaviour
     [SerializeField] private Collider[] colliders;
     [SerializeField] private Transform bubble;
     [SerializeField] private float maxIdleTime;
+    [SerializeField] AudioSource _AudioSourceBalloon;
+    [SerializeField] AudioSource _AudioSourceOuch;
 
     private NavMeshAgent agent;
     private NpcState npcState;
     private float timer;
     private float cooldown;
     private Animator animator;
-    private AudioSource _audioSource;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +23,6 @@ public class NPC : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class NPC : MonoBehaviour
         if (tag == "Head" && npcState != NpcState.Dead)
         {
             bubble.transform.DOScale(Vector3.one * Random.Range(0.5f, 5.0f), 2.5f);
-            _audioSource.Play();
+            _AudioSourceBalloon.Play();
             ScoreManager.Instance.IncreaseScore();
         }
         else if(tag == "Body")
@@ -96,6 +96,14 @@ public class NPC : MonoBehaviour
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             agent.ResetPath();
+            _AudioSourceOuch.Play();
+            Invoke("StandUp", 15);
         }
+    }
+
+    private void StandUp()
+    {
+        animator.SetBool("Die", false);
+        npcState = NpcState.Idle;
     }
 }
