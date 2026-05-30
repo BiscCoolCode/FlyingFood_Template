@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8057625903689146623
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1901935257235833099, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b9a12a323c7575b4d994f2778adfbd81, type: 2}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.167
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.099
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799520202435257503, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283744692023246373, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: m_Name
+      value: ChewinggumBoxBlue Variant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932425421658857456, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1106e5fd6b5804d4eb3f7d6260ebc80c, type: 2}
+    - target: {fileID: 3932425421658857456, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b9a12a323c7575b4d994f2778adfbd81, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fb917e384ef4b747b1d3a8d6d01388c, type: 3}
