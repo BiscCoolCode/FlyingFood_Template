@@ -16,11 +16,13 @@ public class NPC : MonoBehaviour
     private float timer;
     private float cooldown;
     private Animator animator;
+    private bool _isHittable;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _isHittable = true;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
     }
@@ -83,11 +85,13 @@ public class NPC : MonoBehaviour
 
     public void ReceiveCollision(string tag)
     {
-        if (tag == "Head" && npcState != NpcState.Dead)
+        if (tag == "Head" && npcState != NpcState.Dead && _isHittable == true)
         {
             bubble.transform.DOScale(Vector3.one * Random.Range(0.5f, 5.0f), 2.5f);
             _AudioSourceBalloon.Play();
             ScoreManager.Instance.IncreaseScore();
+            _isHittable = false;
+            Invoke("SetHittable", 20);
         }
         else if(tag == "Body")
         {
@@ -105,5 +109,11 @@ public class NPC : MonoBehaviour
     {
         animator.SetBool("Die", false);
         npcState = NpcState.Idle;
+    }
+
+    private void SetHittable()
+    {
+        _isHittable = true;
+        bubble.transform.DOScale(Vector3.zero, 1);
     }
 }

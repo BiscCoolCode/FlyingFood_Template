@@ -7,7 +7,8 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     [SerializeField] private TMP_Text _ScoreText;
-    private int _score;
+    public int Score { get; private set; }
+
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class ScoreManager : MonoBehaviour
 
     public void IncreaseScore()
     {
-        _score++;
-        _ScoreText.text = "Chewinggum-score: "+_score;
+        Score++;
+        _ScoreText.text = "Chewinggum-score: "+Score;
     }
 }
