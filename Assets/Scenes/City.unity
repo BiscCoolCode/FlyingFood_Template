@@ -359,8 +359,8 @@ MonoBehaviour:
     with chewinggums. You have to throw chewinggums with left-click at their heads.
     If you miss, they''ll fall to the ground unconscious...  Watch out, it''s harder
     than you think!'
-  - ' When you get to 25, 50 and 100 deliveries a mentos-box will appear next to
-    you to give you some company. Enjoy your work!'
+  - ' When you get to 25, 50 and 100 deliveries a colored Mints-box will appear next
+    to you to give you some company. Enjoy your work!'
   _OkButton: {fileID: 2023952756}
   _Gum: {fileID: 350883392}
 --- !u!1 &170364667
