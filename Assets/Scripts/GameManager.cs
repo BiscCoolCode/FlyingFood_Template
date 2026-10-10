@@ -1,8 +1,6 @@
 using KinematicCharacterController.Examples;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 using DG.Tweening;
-using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -83,15 +81,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public async void StartGame()
+    public void StartGame()
     {
         _MenuUI.SetActive(false);
         _MenuCamera.gameObject.transform.DOMove(_Player.CharacterCamera.transform.position, _TransitionDurarion);
-        await Task.Delay(1250);
-        _MenuCamera.gameObject.transform.DORotate(_Player.CharacterCamera.transform.rotation.eulerAngles, _TransitionDurarion).OnComplete(() => 
+
+        Invoke(nameof(RotateCamera), 1.25f);
+    }
+
+    private void RotateCamera()
+    {
+        _MenuCamera.gameObject.transform.DORotate(_Player.CharacterCamera.transform.rotation.eulerAngles, _TransitionDurarion).OnComplete(() =>
         {
             print("OnComplete");
             ChangeState(GameState.Intro);
         });
     }
+
 }

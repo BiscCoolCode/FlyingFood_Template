@@ -1,9 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class GumsDialog : MonoBehaviour
 {
@@ -13,7 +10,7 @@ public class GumsDialog : MonoBehaviour
 
     private TMP_Text _textbox;
     private int _dialogNumber;
-    private float _targetScaleGum;
+    public float _targetScaleGum;
     private AudioSource _talkAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,7 +18,7 @@ public class GumsDialog : MonoBehaviour
     {
         _textbox = GetComponent<TMP_Text>();
         _talkAudio = _Gum.GetComponent<AudioSource>();
-        //ChangeText();
+        // ChangeText();
         _OkButton.onClick.AddListener(ChangeText);
     }
 
@@ -41,18 +38,30 @@ public class GumsDialog : MonoBehaviour
         _Gum.transform.localScale = new Vector3(_Gum.transform.localScale.x, Mathf.Lerp(_Gum.transform.localScale.y, _targetScaleGum, 0.5f), _Gum.transform.localScale.z);
     }
 
-    private async void PrintText()
+    private void PrintText()
     {
         _talkAudio.Play();
-        while (_textbox.maxVisibleCharacters < _textbox.text.Length)
+        print("PRINT TEXT");
+        TextAsync();
+    }
+
+    private void TextAsync()
+    {
+        print("TEXT ASYNC");
+        if(_textbox.maxVisibleCharacters < _textbox.text.Length)
         {
+            print("Text");
             _targetScaleGum = Random.Range(2.9f, 3.1f);
             _textbox.maxVisibleCharacters++;
-            await Task.Delay(25);
+            Invoke(nameof(TextAsync), 1f);
         }
-        _talkAudio.Stop();
-        _OkButton.gameObject.SetActive(true);
-        
+        else
+        {
+            print("DIALOG ENDED");
+            _talkAudio.Stop();
+            _OkButton.gameObject.SetActive(true);
+        }
+
     }
 
     private void SkipText()
