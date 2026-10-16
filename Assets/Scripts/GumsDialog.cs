@@ -1,88 +1,168 @@
+
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GumsDialog : MonoBehaviour
 {
-    [TextAreaAttribute][SerializeField] private string[] _Dialog;
+    [TextArea]
+    [SerializeField] private string[] _Dialog;
+
     [SerializeField] private Button _OkButton;
     [SerializeField] private GameObject _Gum;
 
     private TMP_Text _textbox;
     private int _dialogNumber;
-    public float _targetScaleGum;
+    private float _targetScaleGum;
     private AudioSource _talkAudio;
+    private Coroutine _printCoroutine;
+    private bool _initialized;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        _textbox = GetComponent<TMP_Text>();
-        _talkAudio = _Gum.GetComponent<AudioSource>();
-        // ChangeText();
-        _OkButton.onClick.AddListener(ChangeText);
+        Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Initialize()
     {
-        if(GameManager.Instance.CurrentState != GameState.Intro)
+        if (_initialized)
         {
             return;
         }
 
-        if (Input.GetMouseButtonDown(0)) // 0 = Left Click
+        _textbox = GetComponent<TMP_Text>();
+        _talkAudio = _Gum.GetComponent<AudioSource>();
+
+        _OkButton.onClick.AddListener(ChangeText);
+
+        _initialized = true;
+    }
+
+    public void StartDialog()
+    {
+        // Das UI wird im GameManager aktiviert.
+        // Aktiviere zusätzlich das Dialog-Panel.
+        if (transform.parent != null)
+        {
+            transform.parent.gameObject.SetActive(true);
+        }
+
+        gameObject.SetActive(true);
+
+        Initialize();
+
+        ChangeText();
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.CurrentState != GameState.Intro)
+        {
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0))
         {
             SkipText();
         }
 
-        _Gum.transform.localScale = new Vector3(_Gum.transform.localScale.x, Mathf.Lerp(_Gum.transform.localScale.y, _targetScaleGum, 0.5f), _Gum.transform.localScale.z);
+        _Gum.transform.localScale = new Vector3(
+            _Gum.transform.localScale.x,
+            Mathf.Lerp(
+                _Gum.transform.localScale.y,
+                _targetScaleGum,
+                0.5f
+            ),
+            _Gum.transform.localScale.z
+        );
     }
 
-    private void PrintText()
+    private IEnumerator PrintText()
     {
         _talkAudio.Play();
-        print("PRINT TEXT");
-        TextAsync();
-    }
 
-    private void TextAsync()
-    {
-        print("TEXT ASYNC");
-        if(_textbox.maxVisibleCharacters < _textbox.text.Length)
+        while (_textbox.maxVisibleCharacters < _textbox.text.Length)
         {
-            print("Text");
             _targetScaleGum = Random.Range(2.9f, 3.1f);
             _textbox.maxVisibleCharacters++;
-            Invoke(nameof(TextAsync), 1f);
-        }
-        else
-        {
-            print("DIALOG ENDED");
-            _talkAudio.Stop();
-            _OkButton.gameObject.SetActive(true);
+
+            // Funktioniert auch bei Time.timeScale = 0.
+            yield return new WaitForSecondsRealtime(0.025f);
         }
 
+        _talkAudio.Stop();
+        _OkButton.gameObject.SetActive(true);
+
+        _printCoroutine = null;
     }
 
     private void SkipText()
     {
+        if (_printCoroutine == null)
+        {
+            return;
+        }
+
         _textbox.maxVisibleCharacters = _textbox.text.Length;
+
+        StopCoroutine(_printCoroutine);
+        _printCoroutine = null;
+
+        _talkAudio.Stop();
+        _OkButton.gameObject.SetActive(true);
     }
 
     public void ChangeText()
     {
-        print(_dialogNumber);
-        if(_dialogNumber == _Dialog.Length)
+        if (_dialogNumber >= _Dialog.Length)
         {
             GameManager.Instance.ChangeState(GameState.Play);
-            transform.parent.gameObject.SetActive(false);
+
+            if (transform.parent != null)
+            {
+                transform.parent.gameObject.SetActive(false);
+            }
+
             return;
         }
 
+        if (_printCoroutine != null)
+        {
+            StopCoroutine(_printCoroutine);
+            _printCoroutine = null;
+        }
+
+        _talkAudio.Stop();
+
         _textbox.text = _Dialog[_dialogNumber];
-        _OkButton.gameObject.SetActive(false);
         _textbox.maxVisibleCharacters = 0;
-        PrintText();
+        _OkButton.gameObject.SetActive(false);
+
+        _printCoroutine = StartCoroutine(PrintText());
+
         _dialogNumber++;
+    }
+
+    private void OnDisable()
+    {
+        if (_printCoroutine != null)
+        {
+            StopCoroutine(_printCoroutine);
+            _printCoroutine = null;
+        }
+
+        if (_talkAudio != null)
+        {
+            _talkAudio.Stop();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_OkButton != null)
+        {
+            _OkButton.onClick.RemoveListener(ChangeText);
+        }
     }
 }

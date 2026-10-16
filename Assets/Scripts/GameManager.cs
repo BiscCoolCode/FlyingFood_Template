@@ -1,6 +1,8 @@
+
 using KinematicCharacterController.Examples;
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GumsDialog _GumsDialog;
 
     public static GameManager Instance { get; private set; }
-    public GameState CurrentState {  get; private set; }
+    public GameState CurrentState { get; private set; }
 
+    private Coroutine _startGameCoroutine;
 
     private void Awake()
     {
@@ -25,15 +28,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
         ChangeState(GameState.StartMenu);
     }
-
 
     public void ChangeState(GameState gameState)
     {
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
         {
             case GameState.StartMenu:
                 CurrentState = GameState.StartMenu;
+                Time.timeScale = 1f;
+
                 EnableMenu(true);
                 Cursor.lockState = CursorLockMode.None;
                 _Player.gameObject.SetActive(false);
@@ -49,19 +53,26 @@ public class GameManager : MonoBehaviour
 
             case GameState.Intro:
                 CurrentState = GameState.Intro;
-                Time.timeScale = 0;
+                Time.timeScale = 0f;
+
                 _Player.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
-                _GumsDialog.ChangeText();
+
+                // Zuerst das UI aktivieren.
                 _GameUI.SetActive(true);
+
+                // Danach den Dialog starten.
+                _GumsDialog.StartDialog();
                 break;
 
             case GameState.Play:
                 CurrentState = GameState.Play;
-                Time.timeScale = 1;
+                Time.timeScale = 1f;
+
                 _Player.gameObject.SetActive(true);
                 _MenuCamera.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
+
                 EnableMenu(false);
                 break;
         }
@@ -83,19 +94,32 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        _MenuUI.SetActive(false);
-        _MenuCamera.gameObject.transform.DOMove(_Player.CharacterCamera.transform.position, _TransitionDurarion);
+        if (_startGameCoroutine != null)
+        {
+            StopCoroutine(_startGameCoroutine);
+        }
 
-        Invoke(nameof(RotateCamera), 1.25f);
+        _startGameCoroutine = StartCoroutine(StartGameTransition());
     }
 
-    private void RotateCamera()
+    private IEnumerator StartGameTransition()
     {
-        _MenuCamera.gameObject.transform.DORotate(_Player.CharacterCamera.transform.rotation.eulerAngles, _TransitionDurarion).OnComplete(() =>
+        _MenuUI.SetActive(false);
+
+        _MenuCamera.transform.DOMove(
+            _Player.CharacterCamera.transform.position,
+            _TransitionDurarion
+        );
+
+        yield return new WaitForSecondsRealtime(1.25f);
+
+        _MenuCamera.transform.DORotate(
+            _Player.CharacterCamera.transform.rotation.eulerAngles,
+            _TransitionDurarion
+        ).OnComplete(() =>
         {
-            print("OnComplete");
+            _startGameCoroutine = null;
             ChangeState(GameState.Intro);
         });
     }
-
 }
